@@ -17,4 +17,48 @@ public class ClienteRepository {
             }
         }
     }
+
+
+    //metodo atualizar
+    public void atualizar (Cliente cliente){
+        Cliente aux = buscar(cliente.getCpf());
+        if (aux != null) {
+            if (cliente.getEmail() != null) {
+                aux.setEmail(cliente.getEmail());
+            } else if (cliente.getTelefone() != null) {
+                aux.setTelefone(cliente.getTelefone());
+            }else if(cliente.getEndereco().getCep() != null){
+                aux.getEndereco().setCep(cliente.getEndereco().getCep());
+            } else if (cliente.getEndereco().getCidade() != null) {
+                aux.getEndereco().setCidade(cliente.getEndereco().getCidade());
+            } else if (cliente.getEndereco().getBairro() != null) {
+                aux.getEndereco().setBairro(cliente.getEndereco().getBairro());
+            } else if (cliente.getEndereco().getRua() != null) {
+                aux.getEndereco().setCidade(cliente.getEndereco().getRua());
+            }
+        }else{
+            System.out.println("Cliente não encontrado ou existe");
+        }
+
+    }
+
+
+    //metodo buscar
+    public Cliente buscar (String cpf){
+        for(int i = 0; i< clientes.length; i ++){
+            if(clientes[i].getCpf().equals(cpf) ){
+                return clientes[i];
+            }
+        }
+        return null;
+    }
+
+
+
+
+    //metodo remover
+
+    public void remover (Cliente cliente){}
+
+
 }
