@@ -8,7 +8,7 @@ public class Fornecedor {
     private Endereco endereco;
 
 
-    public Fornecedor(){}
+    public Fornecedor(String cnpj, String razaoSocial, String endereco){}
     public Fornecedor(String cnpj, String razaoSocial, Endereco endereco) {
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;

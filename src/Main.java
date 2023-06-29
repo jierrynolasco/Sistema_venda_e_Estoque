@@ -1,50 +1,97 @@
-import javax.management.modelmbean.DescriptorSupport;
 import java.util.Scanner;
+import models.Cliente;
+import models.Produto;
+import models.Fornecedor;
+import repository.ClienteRepository;
+import repository.ProdutoRepository;
+import repository.FornecedorRepository;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Bem vindo ao sistema, o que vai querer gerenciar hoje?");
-        System.out.println("Menu:");
-        System.out.println("1. Cadastrar Cliente");
-        System.out.println("2. Gerenciar Estoque");
-        System.out.println("3. Sair");
-        System.out.print("Escolha uma opção: ");
-        Scanner s = new Scanner(System.in);
-
-        int opçao = s.nextInt();
         Scanner scanner = new Scanner(System.in);
-        int opcao = 0;
 
+        // Exemplo de uso do ClienteRepository
+        ClienteRepository clienteRepository = new ClienteRepository();
 
-        while (opcao != 3) {
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
+        System.out.println("Cadastro de Cliente");
+        System.out.print("CPF: ");
+        String cpf = scanner.nextLine();
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
 
-            if (opcao == 1) {
-                System.out.println("Cadastrar Cliente\n");
+        Cliente cliente = new Cliente(cpf, nome, email);
+        clienteRepository.criar(cliente);
 
+        System.out.println("Cliente cadastrado com sucesso!");
 
-                System.out.println(" --------------- // ------------------");
-                System.out.println("2. Gerenciar Estoque");
-                System.out.println("3. Sair");
+        System.out.println("Buscar Cliente");
+        System.out.print("CPF do Cliente a ser buscado: ");
+        String cpfBusca = scanner.nextLine();
 
-            } else if (opcao == 2) {
-                System.out.println("Gerenciar Estoque\n");
+        Cliente clienteBuscado = clienteRepository.buscar(cpfBusca);
+        if (clienteBuscado != null) {
+            System.out.println("Cliente encontrado: " + clienteBuscado.getNome());
+        } else {
+            System.out.println("Cliente não encontrado.");
+        }
 
+        // Exemplo de uso do ProdutoRepository
+        ProdutoRepository produtoRepository = new ProdutoRepository();
 
-                System.out.println(" --------------- // ------------------");
-                System.out.println("1. Cadastrar Cliente");
-                System.out.println("3. Sair");
-            } else if (opcao == 3) {
-                System.out.println("Encerrando o programa...");
-            } else {
-                System.out.println("Opção inválida. Tente novamente.");
-            }
+        System.out.println("Cadastro de Produto");
+        System.out.print("ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do scanner
+        System.out.print("Nome: ");
+        String nomeProduto = scanner.nextLine();
+        System.out.print("Preço: ");
+        double preco = scanner.nextDouble();
 
-            System.out.println();
+        Produto produto = new Produto(id, nomeProduto, preco);
+        produtoRepository.criar(produto);
+
+        System.out.println("Produto cadastrado com sucesso!");
+
+        System.out.println("Buscar Produto");
+        System.out.print("ID do Produto a ser buscado: ");
+        int idBusca = scanner.nextInt();
+
+        Produto produtoBuscado = produtoRepository.buscar(idBusca);
+        if (produtoBuscado != null) {
+            System.out.println("Produto encontrado: " + produtoBuscado.getNome());
+        } else {
+            System.out.println("Produto não encontrado.");
+        }
+
+        // Exemplo de uso do FornecedorRepository
+        FornecedorRepository fornecedorRepository = new FornecedorRepository();
+
+        System.out.println("Cadastro de Fornecedor");
+        System.out.print("CNPJ: ");
+        String cnpj = scanner.nextLine();
+        System.out.print("Razão Social: ");
+        String razaoSocial = scanner.nextLine();
+        System.out.print("Endereço: ");
+        String endereco = scanner.nextLine();
+
+        Fornecedor fornecedor = new Fornecedor(cnpj, razaoSocial, endereco);
+        fornecedorRepository.criar(fornecedor);
+
+        System.out.println("Fornecedor cadastrado com sucesso!");
+
+        System.out.println("Buscar Fornecedor");
+        System.out.print("CNPJ do Fornecedor a ser buscado: ");
+        String cnpjBusca = scanner.nextLine();
+
+        Fornecedor fornecedorBuscado = fornecedorRepository.buscar(cnpjBusca);
+        if (fornecedorBuscado != null) {
+            System.out.println("Fornecedor encontrado: " + fornecedorBuscado.getRazaoSocial());
+        } else {
+            System.out.println("Fornecedor não encontrado.");
         }
 
         scanner.close();
-}
-
+    }
 }
