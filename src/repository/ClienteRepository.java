@@ -18,7 +18,6 @@ public class ClienteRepository {
         }
     }
 
-
     //metodo atualizar
     public void atualizar (Cliente cliente){
         Cliente aux = buscar(cliente.getCpf());
@@ -42,7 +41,6 @@ public class ClienteRepository {
 
     }
 
-
     //metodo buscar
     public Cliente buscar (String cpf){
         for(int i = 0; i< clientes.length; i ++){
@@ -53,12 +51,18 @@ public class ClienteRepository {
         return null;
     }
 
-
-
-
     //metodo remover
+        public void remover(Cliente cliente) {
+            for (int i = 0; i < clientes.length; i++) {
+                if (clientes[i] != null && clientes[i].equals(cliente)) {
+                    clientes[i] = null;
+                    System.out.println("Cliente removido com sucesso.");
+                    return;
+                }
+            }
+            System.out.println("Cliente não encontrado ou não existe.");
+        }
 
-    public void remover (Cliente cliente){}
+    }
 
 
-}
