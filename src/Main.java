@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Exemplo de uso do ClienteRepository
+
         ClienteRepository clienteRepository = new ClienteRepository();
 
         System.out.println("Cadastro de Cliente");
@@ -37,7 +37,7 @@ public class Main {
             System.out.println("Cliente não encontrado.");
         }
 
-        // Exemplo de uso do ProdutoRepository
+
         ProdutoRepository produtoRepository = new ProdutoRepository();
 
         System.out.println("Cadastro de Produto");
@@ -65,7 +65,6 @@ public class Main {
             System.out.println("Produto não encontrado.");
         }
 
-        // Exemplo de uso do FornecedorRepository
         FornecedorRepository fornecedorRepository = new FornecedorRepository();
 
         System.out.println("Cadastro de Fornecedor");
